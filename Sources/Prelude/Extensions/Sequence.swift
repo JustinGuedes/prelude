@@ -23,4 +23,21 @@ public extension Sequence {
         return result
     }
     
+    func flatMap<T>(_ transform: @escaping (Element) async throws -> [T]) async rethrows -> [T] {
+        var result: [T] = []
+        try await withThrowingTaskGroup(of: Array<T>.self) { group in
+            for element in self {
+                group.addTask {
+                    try await transform(element)
+                }
+                
+                for try await newElement in group {
+                    result.append(contentsOf: newElement)
+                }
+            }
+        }
+        
+        return result
+    }
+    
 }
