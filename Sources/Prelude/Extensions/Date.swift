@@ -8,6 +8,12 @@ public extension Date {
         formatter.dateFormat = "EEEE, MMMM d"
         return formatter.string(from: date)
     }
+    
+    var hour: Int {
+        let calendar = Calendar.current
+        let diffComponents = calendar.dateComponents([.hour], from: self, to: Date())
+        return diffComponents.hour ?? -1
+    }
 
     var timeSinceNowString: String {
         let diff = Calendar.current.dateComponents([.second], from: self, to: Date())
