@@ -11,11 +11,11 @@ public extension Sequence {
                 group.addTask {
                     try await transform(element)
                 }
-                
-                for try await newElement in group {
-                    newElement.flatMap {
-                        result.append($0)
-                    }
+            }
+            
+            for try await newElement in group {
+                newElement.flatMap {
+                    result.append($0)
                 }
             }
         }
@@ -30,10 +30,10 @@ public extension Sequence {
                 group.addTask {
                     try await transform(element)
                 }
-                
-                for try await newElement in group {
-                    result.append(contentsOf: newElement)
-                }
+            }
+
+            for try await newElement in group {
+                result.append(contentsOf: newElement)
             }
         }
         
