@@ -2,6 +2,7 @@ import Foundation
 
 @available(iOS 13.0, *)
 @available(macOS 10.15, *)
+@available(watchOS 6.0, *)
 public extension Sequence {
     
     func flatMap<T>(_ transform: @escaping (Element) async throws -> T?) async rethrows -> [T] {

@@ -1,5 +1,7 @@
 import Foundation
 
+#if os(iOS)
+
 public extension String {
 
     var htmlDecoded: String {
@@ -26,3 +28,5 @@ public extension String {
     }
 
 }
+
+#endif
